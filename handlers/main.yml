@@ -1,0 +1,8 @@
+---
+- name: "Enable and start Glances"
+  register: glances_service_status
+  changed_when: glances_service_status.state != "started"
+  ansible.builtin.service:
+    name: "glances"
+    state: "started"
+    enabled: yes

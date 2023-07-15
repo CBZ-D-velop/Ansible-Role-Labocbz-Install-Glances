@@ -1,0 +1,17 @@
+##############################
+#                            #
+# Ansible / Tower managed on #
+#                            #
+##############################
+
+[Unit]
+Description=Glances
+After=network.target
+
+[Service]
+ExecStart=glances -w -t {{ glances_refresh_time }} -p {{ glances_port }}
+Restart=on-failure
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target

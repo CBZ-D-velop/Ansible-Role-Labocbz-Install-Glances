@@ -1,0 +1,3 @@
+---
+glances_refresh_time: 5
+glances_port: 61208
