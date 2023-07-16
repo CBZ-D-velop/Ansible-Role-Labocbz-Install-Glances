@@ -20,6 +20,19 @@
 
 An Ansible role to install Glance configure it as service.
 
+
+The Ansible role installs Glances, a system monitoring tool, on the target system. The role configures Glances to run as a web server by creating a service file. However, the role does not automate the complex procedure of securing the web interface with login credentials.
+
+Upon deployment, Glances provides real-time monitoring of system resources and performance, enhancing administrators' visibility into the system's health. The role allows administrators to customize the refresh time for Glances' web interface, setting the frequency at which the data is updated to the desired value (e.g., 5 seconds).
+
+One key aspect to note is that the role sets the port for Glances' web server to listen on, ensuring the availability of the monitoring interface on the specified port (e.g., 61208).
+
+However, the procedure to secure the web interface with login credentials is not automated within the role. Administrators must manually implement the complex process of setting up authentication and password protection for Glances' web interface to enhance security.
+
+By deploying Glances with this role, administrators can efficiently set up a powerful system monitoring solution with the flexibility to customize the web interface's refresh time and port. While the role establishes the foundation for running Glances as a web server, securing the web interface with login credentials requires additional manual steps.
+
+In summary, the Glances role simplifies the installation and configuration of the system monitoring tool as a web server. It offers customization options for refresh time and port configuration. However, administrators should be aware of the manual steps involved in securing the web interface with login credentials for enhanced security. The role provides an efficient solution for real-time system monitoring, contributing to better system management and performance analysis.
+
 ## Folder structure
 
 By default Ansible will look in each directory within a role for a main.yml file for relevant content (also man.yml and main):
