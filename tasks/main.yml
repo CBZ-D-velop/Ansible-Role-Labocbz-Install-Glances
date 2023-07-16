@@ -1,21 +1,24 @@
 ---
-- name: "Install Python packages"
-  ansible.builtin.package:
-    update_cache: yes
-    name:
-      - python3
-      - python3-jmespath
-      - python3-pip
+- name: "Install Glances"
+  notify: "Enable and start Glances"
+  block:
+    - name: "Install Python packages"
+      ansible.builtin.package:
+        update_cache: yes
+        name:
+          - "python3"
+          - "python3-jmespath"
+          - "python3-pip"
 
-- name: "Install Glances packages with PIP"
-  ansible.builtin.pip:
-    name:
-      - bottle
-      - glances
+    - name: "Install Glances packages with PIP"
+      ansible.builtin.pip:
+        name:
+          - "bottle"
+          - "glances"
 
 - name: Import glances.service conf
-  notify: "Enable and start Glances"
+  notify: "Restart Glances"
   ansible.builtin.template:
     src: "templates/glances.service.j2"
     dest: "/etc/systemd/system/glances.service"
-    mode: 0700
+    mode: "0700"

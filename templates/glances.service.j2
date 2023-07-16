@@ -10,7 +10,7 @@ After=network.target
 
 [Service]
 ExecStart=glances -w -t {{ glances_refresh_time }} -p {{ glances_port }}
-Restart=on-failure
+Restart=on-
 RemainAfterExit=yes
 
 [Install]

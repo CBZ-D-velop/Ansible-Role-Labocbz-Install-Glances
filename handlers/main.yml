@@ -6,3 +6,13 @@
     name: "glances"
     state: "started"
     enabled: yes
+    daemon_reload: true
+
+- name: "Restart Glances"
+  register: glances_service_status
+  changed_when: glances_service_status.state != "restarted"
+  ansible.builtin.service:
+    name: "glances"
+    state: "started"
+    enabled: yes
+    daemon_reload: true
