@@ -16,6 +16,7 @@
       register: output
       changed_when: output.rc != 0
       ansible.builtin.shell: |
+        rm -rf /usr/lib/python3*/EXTERNALLY-MANAGED
         export PIP_BREAK_SYSTEM_PACKAGES=1
 
     - name: "Install Glances packages with PIP"
