@@ -1,19 +1,13 @@
 ---
 - name: "Converge"
-  hosts: "all"
+  hosts: "cicd-debian-11"
   tasks:
-    # replace these tasks with whatever you find suitable to test
-    - name: "Copy something to test use of synchronize module"
-      ansible.builtin.copy:
-        src: "/etc/hosts"
-        dest: "/tmp/hosts-from-controller"
-        mode: 0700
 
     - name: "Include labocbz.install_glances"
       tags:
         - "labocbz.install_glances"
       vars:
-        glances_refresh_time: "{{ inv_glances_refresh_time }}"
-        glances_port: "{{ inv_glances_port }}"
+        install_glances__refresh_time: "{{ inv_install_glances__refresh_time }}"
+        install_glances__port: "{{ inv_install_glances__port }}"
       ansible.builtin.include_role:
         name: "labocbz.install_glances"

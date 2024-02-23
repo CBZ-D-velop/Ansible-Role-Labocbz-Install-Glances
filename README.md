@@ -116,8 +116,8 @@ Some vars a required to run this role:
 
 ```YAML
 ---
-glances_refresh_time: 5
-glances_port: 61208
+install_glances__refresh_time: 5
+install_glances__port: 61208
 
 ```
 
@@ -131,8 +131,8 @@ In order to surchage vars, you have multiples possibilities but for mains cases 
 # From inventory
 ---
 
-inv_glances_refresh_time: 5
-inv_glances_port: 61208
+inv_install_glances__refresh_time: 5
+inv_install_glances__port: 61208
 
 ```
 
@@ -151,8 +151,8 @@ To run this role, you can copy the molecule/default/converge.yml playbook and ad
     tags:
     - "labocbz.install_glances"
     vars:
-    glances_refresh_time: "{{ inv_glances_refresh_time }}"
-    glances_port: "{{ inv_glances_port }}"
+    install_glances__refresh_time: "{{ inv_install_glances__refresh_time }}"
+    install_glances__port: "{{ inv_install_glances__port }}"
     ansible.builtin.include_role:
     name: "labocbz.install_glances"
 ```
@@ -171,6 +171,18 @@ Here you can put your change to keep a trace of your work and decisions.
 * Molecule now use remote Docker image by Lord Robin Crombez
 * Molecule now use custom Docker image in CI/CD by env vars
 * New CICD with needs and optimization
+
+### 2024-02-22: New CICD and fixes
+
+* Added support for Ubuntu 22
+* Added support for Debian 11/22
+* Edited vars for linting (role name and __)
+* Added generic support for Docker dind (can add used for obscures reasons ... user in use)
+* Fix idempotency
+* Added informations for UID and GID for user/groups
+* Added support for user password creation (on_create)
+* New CI, need work on tag and releases
+* CI use now Sonarqube
 
 ## Authors
 

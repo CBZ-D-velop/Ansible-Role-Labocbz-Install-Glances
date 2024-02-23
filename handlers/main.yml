@@ -1,7 +1,7 @@
 ---
 - name: "Enable and start Glances"
-  register: glances_service_status
-  changed_when: glances_service_status.state != "started"
+  register: install_glances__service_status
+  changed_when: install_glances__service_status.state != "started"
   ansible.builtin.service:
     name: "glances"
     state: "started"
@@ -9,8 +9,8 @@
     daemon_reload: true
 
 - name: "Restart Glances"
-  register: glances_service_status
-  changed_when: glances_service_status.state != "restarted"
+  register: install_glances__service_status
+  changed_when: install_glances__service_status.state != "restarted"
   ansible.builtin.service:
     name: "glances"
     state: "started"

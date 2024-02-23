@@ -2,18 +2,18 @@
 # Don't forget to keep this file updated
 # molecule/<scenario>/verify.yml
 - name: "Verify"
-  hosts: "all"
+  hosts: "cicd-debian-11"
   gather_facts: false
   tasks:
 
     - name: "Get Glances service current state"
-      register: glances_service_status
-      failed_when: not glances_service_status.status.ActiveState == 'active'
+      register: install_glances__service_status
+      failed_when: not install_glances__service_status.status.ActiveState == 'active'
       ansible.builtin.systemd:
         name: "glances"
 
     - name: "Check Glances connectivity"
       ansible.builtin.wait_for:
         host: "{{ inventory_hostname }}"
-        port: "{{ inv_glances_port }}"
+        port: "{{ inv_install_glances__port }}"
         timeout: 120

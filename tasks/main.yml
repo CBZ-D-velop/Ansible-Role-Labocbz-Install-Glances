@@ -1,6 +1,8 @@
 ---
 - name: "Install Glances"
-  notify: "Enable and start Glances"
+  notify:
+    - "Enable and start Glances"
+    - "Restart Glances"
   block:
     - name: "Install Python packages"
       ansible.builtin.package:
@@ -10,15 +12,23 @@
           - "python3-jmespath"
           - "python3-pip"
 
+    - name: "Set PIP_BREAK_SYSTEM_PACKAGES var"
+      register: output
+      changed_when: output.rc != 0
+      ansible.builtin.shell: |
+        rm -rf /usr/lib/python3*/EXTERNALLY-MANAGED
+        export PIP_BREAK_SYSTEM_PACKAGES=1
+
     - name: "Install Glances packages with PIP"
       ansible.builtin.pip:
         name:
           - "bottle"
           - "glances"
 
-- name: Import glances.service conf
-  notify: "Restart Glances"
-  ansible.builtin.template:
-    src: "templates/glances.service.j2"
-    dest: "/etc/systemd/system/glances.service"
-    mode: "0700"
+    - name: Import glances.service conf
+      ansible.builtin.template:
+        src: "templates/glances.service.j2"
+        dest: "/etc/systemd/system/glances.service"
+        mode: "0600"
+        group: "root"
+        owner: "root"
