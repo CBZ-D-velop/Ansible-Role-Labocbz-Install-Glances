@@ -3,13 +3,11 @@
   hosts: "cicd-ubuntu-22"
   tasks:
 
-    - name: "Include labocbz.prepare_host"
+    - name: "Include labocbz.install_glances"
       tags:
-        - "labocbz.prepare_host"
+        - "labocbz.install_glances"
       vars:
-        prepare_host__users: "{{ inv_prepare_host__users }}"
-        prepare_host__packages_removed: "{{ inv_prepare_host__packages_removed }}"
-        prepare_host__packages_installed: "{{ inv_prepare_host__packages_installed }}"
-        prepare_host__system_users: "{{ inv_prepare_host__system_users }}"
+        install_glances__refresh_time: "{{ inv_install_glances__refresh_time }}"
+        install_glances__port: "{{ inv_install_glances__port }}"
       ansible.builtin.include_role:
-        name: "labocbz.prepare_host"
+        name: "labocbz.install_glances"
