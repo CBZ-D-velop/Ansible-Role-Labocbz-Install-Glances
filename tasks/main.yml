@@ -15,7 +15,7 @@
     - name: "Set PIP_BREAK_SYSTEM_PACKAGES var"
       register: output
       changed_when: output.rc != 0
-      ansible.builtin.command: |
+      ansible.builtin.shell: |
         export PIP_BREAK_SYSTEM_PACKAGES=1
 
     - name: "Install Glances packages with PIP"
