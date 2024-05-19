@@ -20,7 +20,6 @@
 
 An Ansible role to install Glance configure it as service.
 
-
 The Ansible role installs Glances, a system monitoring tool, on the target system. The role configures Glances to run as a web server by creating a service file. However, the role does not automate the complex procedure of securing the web interface with login credentials.
 
 Upon deployment, Glances provides real-time monitoring of system resources and performance, enhancing administrators' visibility into the system's health. The role allows administrators to customize the refresh time for Glances' web interface, setting the frequency at which the data is updated to the desired value (e.g., 5 seconds).
@@ -183,6 +182,14 @@ Here you can put your change to keep a trace of your work and decisions.
 * Added support for user password creation (on_create)
 * New CI, need work on tag and releases
 * CI use now Sonarqube
+
+### 2024-05-19: New CI
+
+* Added Markdown lint to the CICD
+* Rework all Docker images
+* Change CICD vars convention
+* New workers
+* Removed all automation based on branch
 
 ## Authors
 
