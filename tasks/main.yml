@@ -5,7 +5,10 @@
     - "Restart Glances"
   block:
     - name: "Install Python packages"
-      ansible.builtin.package:
+      retries: 3
+  delay: 10
+  until: "output is success"
+  ansible.builtin.package:
         update_cache: true
         name:
           - "python3"
