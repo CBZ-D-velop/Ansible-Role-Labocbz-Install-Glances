@@ -5,6 +5,10 @@
     - "Restart Glances"
   block:
     - name: "Install Python packages"
+      retries: 3
+      delay: 10
+      until: output is success
+      register: output
       ansible.builtin.package:
         update_cache: true
         name:
@@ -22,6 +26,7 @@
     - name: "Install Glances packages with PIP"
       ansible.builtin.pip:
         name:
+          - "fastapi"
           - "bottle"
           - "glances"
 
